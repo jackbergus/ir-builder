@@ -262,9 +262,9 @@ public class IRBuilder {
       assert narg == argNames.size();
     } else {
       argNames = new ArrayList<String>();
-      for (Iterator<IType> it = funcType.getArgTypes().iterator(); it
-          .hasNext();) {
+      for (Iterator<IType> it = funcType.getArgTypes().iterator(); it.hasNext();) {
         argNames.add(getLocalConstantCounter());
+        it.next();
       }
     }
 

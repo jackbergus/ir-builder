@@ -17,10 +17,10 @@ public class HelloTest extends TestCase {
 
     IRBuilder ir = new IRBuilder("top");
     ir.constant(null, hello, null, false, null);
-    FunctionType ft = new FunctionType(IntType.INT_32,
-        IntType.INT_8.pointerTo());
+    FunctionType ft = new FunctionType(IntType.INT_32, IntType.INT_8.pointerTo());
     GlobalVariable puts = ir.functionDecl("puts", ft);
-    ir.beginFunction("main", null, null, null);
+
+    ir.beginFunction("main", ft, null, null);
     ir.call(puts, Lists.<IValue>newArrayList(hello), null);
     ir.endFunction(null);
 
