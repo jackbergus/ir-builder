@@ -8,4 +8,7 @@ public interface IValue {
 
   IType type();
 
+  default IValue asGlobalVariable(String name) {
+    return new GlobalVariable(name, type().pointerTo());
+  }
 }

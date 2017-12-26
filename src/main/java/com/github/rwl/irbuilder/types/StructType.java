@@ -1,5 +1,7 @@
 package com.github.rwl.irbuilder.types;
 
+import java.util.List;
+
 public class StructType extends AbstractType {
 
   private final IType[] types;
@@ -9,6 +11,10 @@ public class StructType extends AbstractType {
       assert type != null;
     }
     this.types = types;
+  }
+
+  public StructType(List<IType> types) {
+    this(types.toArray(new IType[types.size()]));
   }
 
   @Override

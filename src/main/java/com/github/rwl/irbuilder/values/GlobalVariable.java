@@ -18,8 +18,9 @@ public class GlobalVariable implements IValue {
   @Override
   public String ir() {
     if (pointerType.pointsToType() instanceof ArrayType) {
-      return String.format("%s getelementptr inbounds (%s @%s, i32 0, i32 0)",
+      return String.format("%s getelementptr inbounds (%s, %s @%s, i32 0, i32 0)",
           ((ArrayType) pointerType.pointsToType()).arrayOfType().pointerTo().ir(),
+          pointerType.pointsToType().ir(),
           pointerType.ir(), name);
     } else {
       return pointerType.ir() + " @" + name;

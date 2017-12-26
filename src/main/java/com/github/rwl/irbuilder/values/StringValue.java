@@ -21,6 +21,10 @@ public class StringValue implements IValue {
     }
   }
 
+  public static IType compileType(int strlen) {
+    return new ArrayType(IntType.INT_8, strlen + 1);
+  }
+
   @Override
   public IType type() {
     return new ArrayType(IntType.INT_8, value.length() + 1);

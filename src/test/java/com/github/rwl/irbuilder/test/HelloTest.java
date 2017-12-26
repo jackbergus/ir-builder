@@ -1,5 +1,6 @@
 package com.github.rwl.irbuilder.test;
 
+import com.github.rwl.irbuilder.types.VoidType;
 import junit.framework.TestCase;
 
 import com.github.rwl.irbuilder.IRBuilder;
@@ -17,11 +18,14 @@ public class HelloTest extends TestCase {
 
     IRBuilder ir = new IRBuilder("top");
     ir.constant(null, hello, null, false, null);
+
+
     FunctionType ft = new FunctionType(IntType.INT_32, IntType.INT_8.pointerTo());
     GlobalVariable puts = ir.functionDecl("puts", ft);
 
-    ir.beginFunction("main", ft, null, null);
-    ir.call(puts, Lists.<IValue>newArrayList(hello), null);
+    FunctionType vType = new FunctionType(VoidType.INSTANCE);
+    ir.beginFunction("main", vType, null, null);
+    ir.call(puts, Lists.newArrayList(hello), null);
     ir.endFunction(null);
 
     System.out.println(ir.build());
